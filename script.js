@@ -4,11 +4,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ACTION REQUIRED: Replace these placeholder URLs with the actual "Raw" URLs from your GitHub repository.
     const fileUrls = {
         submissions: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSxW6lYLIfH1r9954znKNbcE90y5qit38yhhyhZnTv_pMCM46H6DdFzQ5ekkJbqtAwfwVBbNegOVzmU/pub?gid=0&single=true&output=csv',
-        scoring: 'https://raw.githubusercontent.com/ghiassabir/Student-dashboard-with-real-data-v1/refs/heads/Diagnostic-Dashboard/scoring/Raw_to_Scaled_Conversion_table_RW.json',
-        eng1: 'https://raw.githubusercontent.com/ghiassabir/Student-dashboard-with-real-data-v1/refs/heads/Diagnostic-Dashboard/metadata/DT-T0-RW-M1.json',
-        eng2: 'https://raw.githubusercontent.com/ghiassabir/Student-dashboard-with-real-data-v1/refs/heads/Diagnostic-Dashboard/metadata/DT-T0-RW-M2.json',
-        math1: 'https://raw.githubusercontent.com/ghiassabir/Student-dashboard-with-real-data-v1/refs/heads/Diagnostic-Dashboard/metadata/DT-T0-MT-M1.json',
-        math2: 'https://raw.githubusercontent.com/ghiassabir/Student-dashboard-with-real-data-v1/refs/heads/Diagnostic-Dashboard/metadata/DT-T0-MT-M2.json',
+        scoring: 'https://raw.githubusercontent.com/ghiassabir/Practice-Test-1-Dashboard/main/scoring/Raw_to_Scaled_Conversion_table_RW.json',
+        eng1: 'https://raw.githubusercontent.com/ghiassabir/Practice-Test-1-Dashboard/main/metadata/PT-T1-RW-M1.json',
+        eng2: 'https://raw.githubusercontent.com/ghiassabir/Practice-Test-1-Dashboard/main/metadata/PT-T1-RW-M2.json',
+        math1: 'https://raw.githubusercontent.com/ghiassabir/Practice-Test-1-Dashboard/main/metadata/PT-T1-MT-M1.json',
+        math2: 'https://raw.githubusercontent.com/ghiassabir/Practice-Test-1-Dashboard/main/metadata/PT-T1-MT-M2.json',
     };
 
     const modulesConfig = {
