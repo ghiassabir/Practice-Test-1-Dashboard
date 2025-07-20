@@ -226,7 +226,7 @@ function parseCSV(text) {
         feedbackContent.innerHTML = `<p style="color:red;">Error: Could not load data. Please check the console for details and ensure all GitHub URLs are correct.</p>`;
     }
 
-    function displayFeedback(q) {
+   /* function displayFeedback(q) {
         // This function remains the same as the previous version
         const feedbackContent = document.getElementById('feedback-content');
         const statusClass = q.is_correct ? 'status-correct' : (q.student_answer === undefined ? '' : 'status-incorrect');
@@ -262,5 +262,57 @@ function parseCSV(text) {
 
         feedbackContent.innerHTML = html;
         document.getElementById('feedback-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } */
+    function displayFeedback(q) {
+    const feedbackContent = document.getElementById('feedback-content');
+    const statusClass = q.is_correct ? 'status-correct' : (q.student_answer === undefined ? '' : 'status-incorrect');
+    const statusText = q.is_correct ? 'Correct' : (q.student_answer === undefined ? 'Unanswered' : 'Incorrect');
+
+    const getChoiceLetter = (answerValue) => {
+        if (!answerValue) return "N/A";
+        if (q.option_a === answerValue) return 'A';
+        if (q.option_b === answerValue) return 'B';
+        if (q.option_c === answerValue) return 'C';
+        if (q.option_d === answerValue) return 'D';
+        if (q.option_e === answerValue) return 'E';
+        return answerValue;
+    };
+    
+    const correctChoiceLetter = getChoiceLetter(q.correct_answer);
+
+    let questionDisplay = '';
+    if (q.passage_content) {
+        questionDisplay += `<p><em>${q.passage_content.replace(/______/g, '______')}</em></p>`;
     }
+    questionDisplay += `<p><b>${q.question_stem || ''}</b></p>`;
+
+    // **Correction is here:** The explanation is now wrapped in a <div>
+    // and newlines are replaced with <br> tags to preserve formatting.
+    const explanationText = (q.explanation_ai_enhanced || q.explanation_original || 'Explanation not available.').replace(/\n/g, '<br />');
+
+    let html = `
+        <p><span class="${statusClass}">${statusText}</span></p>
+        <p><strong>Question:</strong> ${q.question_number} (Module: ${q.module})</p>
+        <div class="question-text">${questionDisplay}</div>
+        <p><strong>Your Choice:</strong> ${q.student_answer || "Not Answered"}</p>
+        <p><strong>Correct Choice:</strong> ${correctChoiceLetter} (${q.correct_answer})</p>
+        <p><strong>Explanation:</strong></p>
+        <div class="explanation-text">${explanationText}</div>
+    `;
+
+    feedbackContent.innerHTML = html;
+
+    // **IMPORTANT**: You must also add a math rendering library like MathJax or KaTeX
+    // to your main HTML file. After updating the innerHTML, you need to tell
+    // that library to re-scan the page for new math content. For example, with MathJax:
+    if (typeof MathJax !== 'undefined') {
+        MathJax.typesetPromise([feedbackContent]);
+    }
+
+    document.getElementById('feedback-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+
+
+
 });
